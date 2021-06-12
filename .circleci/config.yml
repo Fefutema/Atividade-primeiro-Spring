@@ -10,7 +10,7 @@ jobs:
         - checkout
         - heroku/install
         - run:
-            command: "$JAVA_HOME"
+            command: "pwd"
         - heroku/deploy-via-git
 orbs:
   heroku: circleci/heroku@1.2.6
