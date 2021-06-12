@@ -9,7 +9,7 @@ jobs:
         - checkout
         - heroku/install
         - run:
-            command: "pwd"
+            command: "heroku builds:cancel"
         - heroku/deploy-via-git
 orbs:
   heroku: circleci/heroku@1.2.6
