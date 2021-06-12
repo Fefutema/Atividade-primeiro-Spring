@@ -28,11 +28,7 @@ jobs:
         - checkout
         - heroku/install
         - run:
-            command: "| sh
-            heroku git:remote -a atividade-primeiro-spring
-            git push --force https://heroku:61f4760c-b524-4799-91b1-28e875e9cb3a61f4760c-b524-4799-91b1-28e875e9cb3a@git.heroku.com/atividade-primeiro-spring.git HEAD:refs/heads/master
-            sleep 5
-            heroku restart"
+            command: "pwd"
         - heroku/deploy-via-git
 orbs:
   heroku: circleci/heroku@1.2.6
