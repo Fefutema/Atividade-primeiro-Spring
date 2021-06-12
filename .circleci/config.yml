@@ -22,12 +22,28 @@ jobs:
       - run:
           name: Test
           command: mvn test
-
+  deploy:
+      executor: heroku/default
+      steps:
+        - checkout
+        - heroku/install
+        - run:
+            command: "| sh
+            heroku git:remote -a atividade-primeiro-spring
+            git push --force https://heroku:61f4760c-b524-4799-91b1-28e875e9cb3a61f4760c-b524-4799-91b1-28e875e9cb3a@git.heroku.com/atividade-primeiro-spring.git HEAD:refs/heads/master
+            sleep 5
+            heroku restart"
+        - heroku/deploy-via-git
+orbs:
+  heroku: circleci/heroku@1.2.6
 workflows:
   # Below is the definition of your workflow.
   # Inside the workflow, you provide the jobs you want to run, e.g this workflow runs the build-and-test job above.
   # CircleCI will run this workflow on every commit.
   # For more details on extending your workflow, see the configuration docs: https://circleci.com/docs/2.0/configuration-reference/#workflows
+  heroku_deploy:
+    jobs:
+      - deploy
   sample: 
     jobs:
       - build-and-test
